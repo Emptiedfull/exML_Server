@@ -1,6 +1,6 @@
 from flask import blueprints
 import flask
-from tokens import get_entry,get_all,enter_queue,get_token
+from tokens import get_entry,get_all,enter_queue,get_token,get_all_assigned
 
 
 token_handler = blueprints.Blueprint('token_handler', __name__)
