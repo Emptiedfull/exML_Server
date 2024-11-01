@@ -69,11 +69,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3645AFD11BC44459B4DEADAC03C45C05 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_34CD18B3049949CD812EDF61127A58DA }}
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
-        with:
-          app-name: 'Exml'
-          slot-name: 'Production'
-          startup-command: 'python main.py'
-          
+      - name: Configure deployment and runtime settings on the webapp
+        run: |
+            az configure --defaults ${{ env.RESOURCE_GROUP }}
+            az webapp config appsettings --name ${{ env.WEBAPP_NAME }} --settings \
+                SCM_DO_BUILD_DURING_DEPLOYMENT=true \
+                FLASK_ENV=production
+        
+            az webapp config set --name ${{ env.WEBAPP_NAME }} \
+                --startup-file "gunicorn --bind=0.0.0.0 --timeout 600 main:app"
