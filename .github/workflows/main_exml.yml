@@ -75,5 +75,5 @@ jobs:
         with:
           app-name: 'Exml'
           slot-name: 'Production'
-          start-up-command: 'python main.py'
+          startup-command: 'python main.py'
           
