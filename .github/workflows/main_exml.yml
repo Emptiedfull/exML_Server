@@ -72,7 +72,7 @@ jobs:
 
 
       - name: Deploy to App Service
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'Exml'
           slot-name: 'Production'
