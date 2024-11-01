@@ -38,7 +38,7 @@ def enterQueue():
 
 @token_handler.route('/queue',methods=['GET'])
 def queue():
-    return flask.jsonify({"queue":get_all()})
+    return flask.jsonify({"queue":get_all(),"assigned":get_all_assigned()})
 
 @token_handler.route('/get',methods=['GET'])
 def get():
